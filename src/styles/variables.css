@@ -1,0 +1,102 @@
+:root {
+  /* Brand Palette - Ultra-Light White & Lighter Toasted Brown */
+  --color-brown-900: #5C3820;
+  --color-brown-800: #734527;
+  --color-brown-700: #8C5532;     /* Core Lighter Brown */
+  --color-brown-600: #A46942;
+  --color-brown-500: #BE835A;
+  --color-brown-400: #D6A47E;
+  --color-brown-300: #E7C5A9;
+  --color-brown-100: #F6EDE5;
+  --color-brown-50:  #FAF6F2;
+
+  --color-cream-gold: #C2956E;
+  --color-warm-sand:  #F4EFEA;
+  --color-pure-white: #FFFFFF;
+
+  /* Semantic Light Background Tokens */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFA;
+  --bg-subtle: #F7F5F2;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.94);
+
+  /* Primary Brand Accent (Refined Warm Toasted Brown) */
+  --primary-color: #85512F;
+  --primary-color-hover: #6E3F20;
+  --primary-light: #F6EDE5;
+
+  /* Minimalist Crisp Borders */
+  --border-ultra-subtle: rgba(133, 81, 47, 0.08);
+  --border-subtle: rgba(133, 81, 47, 0.14);
+  --border-medium: rgba(133, 81, 47, 0.25);
+
+  /* Typography Colors */
+  --text-primary: #2B1D15;        /* Crisp dark mocha, soft on eyes */
+  --text-secondary: #6B5548;      /* Gentle warm taupe */
+  --text-muted: #9E887B;          /* Light subtle taupe */
+  --text-accent: #85512F;
+  --text-inverse: #FFFFFF;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Minimalist Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.25rem;
+  --space-2xl: 3.5rem;
+  --space-3xl: 5rem;
+  --space-4xl: 7rem;
+
+  --container-max-w: 1240px;
+  --nav-height: 74px;
+
+  /* Soft, Airy Shadows */
+  --shadow-subtle: 0 4px 20px rgba(133, 81, 47, 0.05);
+  --shadow-card: 0 10px 30px rgba(133, 81, 47, 0.07);
+  --shadow-hover: 0 20px 45px rgba(133, 81, 47, 0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast: 180ms ease;
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Dark Mode ─────────────────────────────────────────────── */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-primary:    #13100D;
+  --bg-secondary:  #1A1510;
+  --bg-subtle:     #1E1812;
+  --bg-card:       #201A13;
+  --bg-glass:      rgba(20, 15, 10, 0.92);
+
+  /* Borders */
+  --border-ultra-subtle: rgba(190, 131, 90, 0.10);
+  --border-subtle:       rgba(190, 131, 90, 0.18);
+  --border-medium:       rgba(190, 131, 90, 0.30);
+
+  /* Typography */
+  --text-primary:   #F0E8E0;
+  --text-secondary: #C4AFA4;
+  --text-muted:     #8B7570;
+  --text-accent:    #C2956E;
+  --text-inverse:   #13100D;
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-card:   0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover:  0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* Smooth transition when the theme is toggled */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
