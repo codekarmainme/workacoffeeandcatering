@@ -182,7 +182,6 @@ export default function SignInModal({ isOpen, onClose, initialMode = 'signup' })
           {/* Header */}
           <div className="signin-header">
             <div className="signin-icon">
-              <User size={28} strokeWidth={1.5} />
             </div>
             <h2 className="signin-title">
               {mode === 'signup' ? 'Create Account' : 'Welcome Back'}
@@ -204,7 +203,6 @@ export default function SignInModal({ isOpen, onClose, initialMode = 'signup' })
                   Full Name
                 </label>
                 <div className="input-wrapper">
-                  <User size={18} className="input-icon" />
                   <input
                     type="text"
                     id="fullName"
@@ -228,7 +226,6 @@ export default function SignInModal({ isOpen, onClose, initialMode = 'signup' })
                 Email Address
               </label>
               <div className="input-wrapper">
-                <Mail size={18} className="input-icon" />
                 <input
                   type="email"
                   id="email"
@@ -251,7 +248,6 @@ export default function SignInModal({ isOpen, onClose, initialMode = 'signup' })
                 Password
               </label>
               <div className="input-wrapper">
-                <Lock size={18} className="input-icon" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   id="password"
@@ -287,7 +283,6 @@ export default function SignInModal({ isOpen, onClose, initialMode = 'signup' })
                   Confirm Password
                 </label>
                 <div className="input-wrapper">
-                  <Lock size={18} className="input-icon" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     id="confirmPassword"
