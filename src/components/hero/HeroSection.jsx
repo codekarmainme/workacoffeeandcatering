@@ -1,21 +1,67 @@
 import React from 'react'
 import { Coffee, ArrowRight, MapPin, Quote } from 'lucide-react'
-import imgBeyaynetu from '../../assets/foods/IMG_1697.JPG'
-import imgShiro from '../../assets/foods/IMG_1701.JPG'
-import imgBanquet from '../../assets/foods/photo_2026-09-03_10-33-18.jpg'
-import imgKitfo from '../../assets/foods/IMG_5710.JPG'
-import imgCoffee from '../../assets/foods/IMG_1714.JPG'
-import imgSpecialBurger from '../../assets/foods/IMG_1718.jpg'
 import './HeroSection.css'
+
+// Cloudinary image URLs - Replace local imports with these
+const IMAGES = {
+  beyaynetu: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442241/IMG_1717.jpg',
+  coffee: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442230/IMG_1716.jpg',
+  kitfo: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442229/IMG_5708.jpg',
+  banquet: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442231/photo_2026-09-03_10-33-18.jpg',
+  shiro: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442225/IMG_1703.jpg',
+  burger: 'https://res.cloudinary.com/mbeopgek/image/upload/v1788442229/IMG_1718.jpg'
+}
 
 // Six dishes placed evenly around the orbit (60° apart), starting at the top.
 const ORBIT_NODES = [
-  { img: imgBeyaynetu, alt: 'Werka signature beyaynetu feast', am: 'በያይነቱ', en: 'Signature Feast', angle: -90, size: 140 },
-  { img: imgCoffee, alt: 'Traditional Ethiopian coffee ceremony', am: 'ቡና', en: 'Coffee Ceremony', angle: -30, size: 110 },
-  { img: imgKitfo, alt: 'Kitfo, minced seasoned beef', am: 'ክትፎ', en: 'Kitfo', angle: 30, size: 132 },
-  { img: imgBanquet, alt: 'Traditional morning banquet spread', am: 'የቁርስ ማዕድ', en: 'Morning Banquet', angle: 90, size: 116 },
-  { img: imgShiro, alt: 'Sizzling clay pot shiro', am: 'ሽሮ', en: 'Clay Pot Shiro', angle: 150, size: 128 },
-  { img: imgSpecialBurger, alt: "Werka's house fusion burger", am: null, en: 'House Fusion', angle: 210, size: 104 },
+  {
+    img: IMAGES.beyaynetu,
+    alt: 'Werka signature beyaynetu feast',
+    am: 'በያይነቱ',
+    en: 'Signature Feast',
+    angle: -90,
+    size: 140
+  },
+  {
+    img: IMAGES.coffee,
+    alt: 'Traditional Ethiopian coffee ceremony',
+    am: 'ቡና',
+    en: 'Coffee Ceremony',
+    angle: -30,
+    size: 110
+  },
+  {
+    img: IMAGES.kitfo,
+    alt: 'Kitfo, minced seasoned beef',
+    am: 'ክትፎ',
+    en: 'Kitfo',
+    angle: 30,
+    size: 132
+  },
+  {
+    img: IMAGES.banquet,
+    alt: 'Traditional morning banquet spread',
+    am: 'የቁርስ ማዕድ',
+    en: 'Morning Banquet',
+    angle: 90,
+    size: 116
+  },
+  {
+    img: IMAGES.shiro,
+    alt: 'Sizzling clay pot shiro',
+    am: 'ሽሮ',
+    en: 'Clay Pot Shiro',
+    angle: 150,
+    size: 128
+  },
+  {
+    img: IMAGES.burger,
+    alt: "Werka's house fusion burger",
+    am: null,
+    en: 'House Fusion',
+    angle: 210,
+    size: 104
+  },
 ]
 
 export default function HeroSection({ onBookCatering }) {
@@ -94,6 +140,11 @@ export default function HeroSection({ onBookCatering }) {
                         alt={node.alt}
                         className="orbit-node-img"
                         loading={i < 2 ? 'eager' : 'lazy'}
+                        onError={(e) => {
+                          // Fallback if image fails to load
+                          e.target.onerror = null
+                          e.target.src = 'https://via.placeholder.com/400x400/000000/ffffff?text=Werka'
+                        }}
                       />
                     </div>
                     <div className="orbit-node-tag">
