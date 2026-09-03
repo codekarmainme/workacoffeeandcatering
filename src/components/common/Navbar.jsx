@@ -55,7 +55,7 @@ export default function Navbar({ onOpenReservation }) {
           {/* Desktop Navigation Links */}
           <ul className="nav-minimal-links">
             <li><a href="#hero" className="nav-item-link">Home</a></li>
-            <li><a href="#branches" className="nav-item-link">Where are Branches</a></li>
+            <li><a href="#branches" className="nav-item-link">Where are we?</a></li>
             <li><a href="#reviews" className="nav-item-link">Reviews</a></li>
             <li><a href="#contact" className="nav-item-link">Contact</a></li>
           </ul>
@@ -98,7 +98,7 @@ export default function Navbar({ onOpenReservation }) {
         <div className={`mobile-drawer-minimal ${mobileMenuOpen ? 'open' : ''}`}>
           <ul className="mobile-drawer-links">
             <li><a href="#hero" onClick={closeMobile}>Home</a></li>
-            <li><a href="#branches" onClick={closeMobile}>Where are Branches</a></li>
+            <li><a href="#branches" onClick={closeMobile}>Where are we?</a></li>
             <li><a href="#reviews" onClick={closeMobile}>Reviews</a></li>
 
             <li><a href="#contact" onClick={closeMobile}>Contact</a></li>
