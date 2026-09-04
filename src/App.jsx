@@ -6,6 +6,7 @@ import ReviewsSection from './components/reviews/ReviewsSection'
 import ContactSection from './components/contact/ContactSection'
 import './App.css'
 import BranchesSection from './components/branches/BranchesSection'
+import BlogSection from './components/blog/BlogSection'
 import Footer from './components/common/Footer'
 function App() {
   const [isReservationOpen, setIsReservationOpen] = useState(false)
@@ -22,8 +23,8 @@ function App() {
       <main>
         <HeroSection onOpenReservation={handleOpenReservation} />
         <BranchesSection />
-
         <ReviewsSection />
+        <BlogSection />
         <ContactSection />
         <Footer />
 

@@ -4,7 +4,16 @@ import {
     Clock, Users, Coffee, Utensils, Sparkles, Crown,
     MapPin, Phone, Mail, MessageSquare, ArrowRight
 } from 'lucide-react'
+import { DatePicker, TimePicker } from './Pickers'
 import './Checkout.css'
+
+function formatTime(value) {
+    if (!value) return ''
+    const [h, m] = value.split(':').map(Number)
+    const h12 = h % 12 === 0 ? 12 : h % 12
+    const ampm = h < 12 ? 'AM' : 'PM'
+    return `${String(h12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`
+}
 
 export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
     const [isAnimating, setIsAnimating] = useState(false)
@@ -23,6 +32,7 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
         paymentMethod: 'credit_card'
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [showPickerError, setShowPickerError] = useState(false)
 
     useEffect(() => {
         if (isOpen) {
@@ -59,6 +69,13 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
 
     const handleNext = (e) => {
         e.preventDefault()
+
+        if (!formData.eventDate || !formData.eventTime) {
+            setShowPickerError(true)
+            window.scrollTo(0, 0)
+            return
+        }
+        setShowPickerError(false)
         setStep(2)
         window.scrollTo(0, 0)
     }
@@ -223,13 +240,12 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
                                                 <Calendar size={16} />
                                                 Event Date *
                                             </label>
-                                            <input
-                                                type="date"
-                                                name="eventDate"
+                                            <DatePicker
                                                 value={formData.eventDate}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="form-input"
+                                                onChange={(val) => {
+                                                    setShowPickerError(false)
+                                                    setFormData({ ...formData, eventDate: val })
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -240,13 +256,12 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
                                                 <Clock size={16} />
                                                 Event Time *
                                             </label>
-                                            <input
-                                                type="time"
-                                                name="eventTime"
+                                            <TimePicker
                                                 value={formData.eventTime}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="form-input"
+                                                onChange={(val) => {
+                                                    setShowPickerError(false)
+                                                    setFormData({ ...formData, eventTime: val })
+                                                }}
                                             />
                                         </div>
                                         <div className="form-group">
@@ -326,6 +341,10 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
                                         />
                                     </div>
 
+                                    {showPickerError && (
+                                        <p className="picker-error">Please select both an event date and time.</p>
+                                    )}
+
                                     <button type="submit" className="checkout-next-btn">
                                         Review Order
                                         <ArrowRight size={18} />
@@ -364,13 +383,20 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
                                         <div className="review-detail-item">
                                             <span className="review-detail-label">Event Date</span>
                                             <span className="review-detail-value">
-                                                {formData.eventDate || 'Not specified'}
+                                                {formData.eventDate
+                                                    ? new Date(formData.eventDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                                        weekday: 'long',
+                                                        month: 'long',
+                                                        day: 'numeric',
+                                                        year: 'numeric',
+                                                    })
+                                                    : 'Not specified'}
                                             </span>
                                         </div>
                                         <div className="review-detail-item">
                                             <span className="review-detail-label">Event Time</span>
                                             <span className="review-detail-value">
-                                                {formData.eventTime || 'Not specified'}
+                                                {formatTime(formData.eventTime) || 'Not specified'}
                                             </span>
                                         </div>
                                         <div className="review-detail-item">
@@ -486,7 +512,21 @@ export default function CheckoutModal({ isOpen, onClose, selectedPlan }) {
                                 </div>
                                 <div className="confirmation-detail">
                                     <span className="detail-label">Date</span>
-                                    <span className="detail-value">{formData.eventDate || 'To be confirmed'}</span>
+                                    <span className="detail-value">
+                                        {formData.eventDate
+                                            ? new Date(formData.eventDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                                weekday: 'short',
+                                                month: 'short',
+                                                day: 'numeric',
+                                            })
+                                            : 'To be confirmed'}
+                                    </span>
+                                </div>
+                                <div className="confirmation-detail">
+                                    <span className="detail-label">Time</span>
+                                    <span className="detail-value">
+                                        {formatTime(formData.eventTime) || 'To be confirmed'}
+                                    </span>
                                 </div>
                                 <div className="confirmation-detail">
                                     <span className="detail-label">Guests</span>

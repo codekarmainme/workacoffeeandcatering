@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
 .navbar-minimal-header {
   position: fixed;
   top: 0;
@@ -30,43 +32,23 @@
   user-select: none;
 }
 
-.logo-square {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: #85512F;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(133, 81, 47, 0.2);
-  transition: transform var(--transition-fast);
-}
-
-.brand-minimal-logo:hover .logo-square {
-  transform: rotate(-5deg);
-}
-
-.logo-icon-svg {
-  color: #FFFFFF;
-}
-
 .logo-brand-text {
   display: flex;
   flex-direction: column;
 }
 
 .brand-title-main {
-  font-size: 1.55rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-family: 'UnifrakturMaguntia', 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: #000000;
   line-height: 1;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
   transition: all var(--transition-fast);
 }
 
 .brand-minimal-logo:hover .brand-title-main {
-  letter-spacing: 0.15em;
+  letter-spacing: 0.07em;
   color: #85512F;
 }
 
@@ -75,7 +57,7 @@
   letter-spacing: 0.18em;
   color: #000000;
   font-weight: 700;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
 }
 
 /* Nav Links */

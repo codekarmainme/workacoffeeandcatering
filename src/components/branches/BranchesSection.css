@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
 .branches-section {
   --br-black: #000000;
   --br-charcoal: #1a1a1a;
@@ -11,6 +13,80 @@
   position: relative;
   padding: 6rem 0;
   background: #ffffff;
+}
+
+/* ---------- Decorative flag (top right) ---------- */
+
+.branches-flag {
+  position: absolute;
+  top: 3rem;
+  right: 8rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.branches-flag-pole {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 92px;
+  background: linear-gradient(to bottom, #85512F, #6A3F25);
+  border-radius: 2px;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.branches-flag-pole::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #85512F;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.branches-flag-cloth {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 108px;
+  height: 58px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, 100% 0, 82% 50%, 100% 100%, 0 100%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  animation: flag-wave 3.2s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.branches-flag-text {
+  font-family: 'UnifrakturMaguntia', 'Times New Roman', serif;
+  font-size: 1.15rem;
+  color: #85512F;
+  transform: translateX(-6px);
+  letter-spacing: 0.02em;
+}
+
+@keyframes flag-wave {
+  0%, 100% {
+    transform: skewY(0deg);
+  }
+  50% {
+    transform: skewY(-3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branches-flag-cloth {
+    animation: none;
+  }
 }
 
 .branches-container {
@@ -487,6 +563,11 @@
   .branches-map {
     min-height: 340px;
   }
+
+  .branches-flag {
+    top: 2rem;
+    right: 5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -515,6 +596,24 @@
 @media (max-width: 600px) {
   .branches-section {
     padding: 4rem 0;
+  }
+
+  .branches-flag {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .branches-flag-pole {
+    height: 78px;
+  }
+
+  .branches-flag-cloth {
+    width: 92px;
+    height: 50px;
+  }
+
+  .branches-flag-text {
+    font-size: 0.98rem;
   }
 
   .branches-map-wrap,

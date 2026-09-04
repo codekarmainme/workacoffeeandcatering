@@ -76,6 +76,12 @@ export default function BranchesSection() {
 
   return (
     <section className="branches-section" id="branches">
+      <div className="branches-flag" aria-hidden="true">
+        <div className="branches-flag-pole" />
+        <div className="branches-flag-cloth">
+          <span className="branches-flag-text">Werka</span>
+        </div>
+      </div>
       <div className="container branches-container">
 
         <div className="branches-heading">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Coffee, Calendar, Menu as MenuIcon, X, LogIn } from 'lucide-react'
+import { Calendar, Menu as MenuIcon, X, LogIn } from 'lucide-react'
 import BookingModal from '../../book_catering/BookCatering'  // Import the modal
 import './Navbar.css'
 import SignInModal from '../../authentication/Signin'
@@ -43,9 +43,6 @@ export default function Navbar({ onOpenReservation }) {
         <nav className="navbar-minimal container" aria-label="Main Navigation">
           {/* Brand Logo */}
           <a href="#" className="brand-minimal-logo" onClick={closeMobile}>
-            <div className="logo-square">
-              <Coffee size={20} className="logo-icon-svg" />
-            </div>
             <div className="logo-brand-text">
               <span className="brand-title-main">WERKA</span>
               <span className="brand-title-sub">BOLE • SUMMIT • LEBU</span>
@@ -57,6 +54,7 @@ export default function Navbar({ onOpenReservation }) {
             <li><a href="#hero" className="nav-item-link">Home</a></li>
             <li><a href="#branches" className="nav-item-link">Where are we?</a></li>
             <li><a href="#reviews" className="nav-item-link">Reviews</a></li>
+            <li><a href="#blog" className="nav-item-link">Blog</a></li>
             <li><a href="#contact" className="nav-item-link">Contact</a></li>
           </ul>
 
@@ -100,7 +98,7 @@ export default function Navbar({ onOpenReservation }) {
             <li><a href="#hero" onClick={closeMobile}>Home</a></li>
             <li><a href="#branches" onClick={closeMobile}>Where are we?</a></li>
             <li><a href="#reviews" onClick={closeMobile}>Reviews</a></li>
-
+            <li><a href="#blog" onClick={closeMobile}>Blog</a></li>
             <li><a href="#contact" onClick={closeMobile}>Contact</a></li>
           </ul>
           <div className="mobile-drawer-buttons">
