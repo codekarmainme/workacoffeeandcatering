@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Navbar from './components/common/Navbar'
 import HeroSection from './components/hero/HeroSection'
 
@@ -9,19 +9,14 @@ import BranchesSection from './components/branches/BranchesSection'
 import BlogSection from './components/blog/BlogSection'
 import Footer from './components/common/Footer'
 function App() {
-  const [isReservationOpen, setIsReservationOpen] = useState(false)
-
-  const handleOpenReservation = () => setIsReservationOpen(true)
-  const handleCloseReservation = () => setIsReservationOpen(false)
-
   return (
     <div className="app-root">
       {/* Navigation Header */}
-      <Navbar onOpenReservation={handleOpenReservation} />
+      <Navbar />
 
 
       <main>
-        <HeroSection onOpenReservation={handleOpenReservation} />
+        <HeroSection />
         <BranchesSection />
         <ReviewsSection />
         <BlogSection />

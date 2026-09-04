@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Coffee, ArrowRight, MapPin, Quote } from 'lucide-react'
+import BookingModal from '../../book_catering/BookCatering'
 import './HeroSection.css'
 
 // Cloudinary image URLs - Replace local imports with these
@@ -64,15 +65,22 @@ const ORBIT_NODES = [
   },
 ]
 
-export default function HeroSection({ onBookCatering }) {
-  const CtaTag = onBookCatering ? 'button' : 'a'
-  const ctaProps = onBookCatering
-    ? { type: 'button', onClick: onBookCatering }
-    : { href: '#catering' }
+export default function HeroSection() {
+  const [bookingOpen, setBookingOpen] = useState(false)
+
+  const openBooking = (e) => {
+    if (e) e.preventDefault()
+    setBookingOpen(true)
+  }
+
+  const closeBooking = () => {
+    setBookingOpen(false)
+  }
 
   return (
-    <section className="hero-orbit-section" id="hero">
-      <div className="container hero-orbit-container">
+    <>
+      <section className="hero-orbit-section" id="hero">
+        <div className="container hero-orbit-container">
 
         {/* Editorial Text Block */}
         <div className="hero-copy">
@@ -89,10 +97,10 @@ export default function HeroSection({ onBookCatering }) {
           </p>
 
           <div className="hero-cta-row">
-            <CtaTag className="hero-cta-primary" {...ctaProps}>
+            <button type="button" className="hero-cta-primary" onClick={openBooking}>
               <span>Book Catering</span>
               <ArrowRight size={16} strokeWidth={1.8} className="hero-cta-arrow" />
-            </CtaTag>
+            </button>
 
             <a href="#branches" className="hero-cta-secondary">
               <MapPin size={15} strokeWidth={1.8} />
@@ -159,6 +167,9 @@ export default function HeroSection({ onBookCatering }) {
         </div>
 
       </div>
-    </section>
+      </section>
+
+      <BookingModal isOpen={bookingOpen} onClose={closeBooking} />
+    </>
   )
 }
