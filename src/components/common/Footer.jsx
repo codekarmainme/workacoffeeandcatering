@@ -1,96 +1,94 @@
 import React from 'react'
-import { Coffee, ArrowRight } from 'lucide-react'
-// Import social icons from react-icons
-import { FaFacebook, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'
+import { Coffee, MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa'
 import './Footer.css'
 
 export default function Footer() {
   return (
     <footer className="footer-wrapper">
-      {/* CTA Card - Overlaps the top edge */}
-      <div className="cta-card-container">
-        <div className="cta-card">
-          <div className="cta-content">
-            <h3 className="cta-title">Ready to Experience Werka?</h3>
-            <p className="cta-description">
-              Join thousands of coffee lovers who've made us their daily ritual.
-            </p>
-          </div>
-          <div className="cta-actions">
-            <button className="cta-primary-btn">
-              Book a Table
-              <ArrowRight size={18} />
-            </button>
-            <button className="cta-ghost-btn">
-              Book a Demo
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer Proper */}
       <div className="footer-main">
         <div className="footer-container">
-          {/* Top Section: Brand + Links */}
+
+          {/* Top: Brand + Restaurants links */}
           <div className="footer-top">
             {/* Brand Column */}
             <div className="footer-brand">
               <div className="brand-logo">
                 <div className="brand-icon-square">
-                  <Coffee size={22} />
+                  <Coffee size={18} />
                 </div>
                 <span className="brand-name">Werka</span>
               </div>
               <p className="brand-description">
-                Ethiopia's finest coffee, served with warmth and tradition since 2010.
+                Ethiopian coffee &amp; kitchen, served warm in Addis Ababa.
               </p>
               <div className="social-links">
-                <a href="#" className="social-link" aria-label="Twitter">
-                  <FaFacebook size={16} />
+                <a
+                  href="https://www.instagram.com/werka.coffee/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram size={15} />
                 </a>
-                <a href="#" className="social-link" aria-label="Instagram">
-                  <FaInstagram size={16} />
+                <a
+                  href="https://web.facebook.com/profile.php?id=61577292957118&locale=mt_MT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook size={15} />
                 </a>
-                <a href="#" className="social-link" aria-label="YouTube">
-                  <FaYoutube size={16} />
-                </a>
-                <a href="#" className="social-link" aria-label="GitHub">
-                  <FaTiktok size={16} />
+                <a
+                  href="https://www.tiktok.com/@werkacoffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label="TikTok"
+                >
+                  <FaTiktok size={15} />
                 </a>
               </div>
             </div>
 
-            {/* Link Columns */}
-            <div className="footer-links">
-              <div className="link-column">
-                <h4 className="link-column-title">Product</h4>
-                <ul className="link-list">
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Integrations</a></li>
-                  <li><a href="#">Changelog</a></li>
-                </ul>
-              </div>
+            {/* Visit us column */}
+            <div className="footer-info">
+              <h4 className="link-column-title">Visit us</h4>
+              <ul className="link-list">
+                <li>
+                  <a href="#branches">
+                    <MapPin size={14} />
+                    <span>Bole • Summit • Lebu</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#branches">
+                    <Clock size={14} />
+                    <span>Open daily, 6 AM – 11 PM</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-              <div className="link-column">
-                <h4 className="link-column-title">Company</h4>
-                <ul className="link-list">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Careers</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </div>
-
-              <div className="link-column">
-                <h4 className="link-column-title">Resources</h4>
-                <ul className="link-list">
-                  <li><a href="#">Documentation</a></li>
-                  <li><a href="#">Support</a></li>
-                  <li><a href="#">Community</a></li>
-                  <li><a href="#">Status</a></li>
-                </ul>
-              </div>
+            {/* Contact column */}
+            <div className="footer-info">
+              <h4 className="link-column-title">Get in touch</h4>
+              <ul className="link-list">
+                <li>
+                  <a href="#contact">
+                    <Phone size={14} />
+                    <span>+251 911 234 567</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact">
+                    <Mail size={14} />
+                    <span>hello@werkacoffee.com</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -100,12 +98,11 @@ export default function Footer() {
           {/* Bottom Row */}
           <div className="footer-bottom">
             <span className="copyright">
-              &copy; {new Date().getFullYear()} Werka Coffee. All rights reserved.
+              &copy; {new Date().getFullYear()} Werka Coffee. Made in Addis Ababa.
             </span>
             <div className="footer-legal">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Security</a>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
             </div>
           </div>
         </div>

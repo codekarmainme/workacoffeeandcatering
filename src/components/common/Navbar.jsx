@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Calendar, Menu as MenuIcon, X, LogIn } from 'lucide-react'
+import { Calendar, Menu as MenuIcon, X, LogIn, ShoppingCart } from 'lucide-react'
 import BookingModal from '../../book_catering/BookCatering'  // Import the modal
 import './Navbar.css'
 import SignInModal from '../../authentication/Signin'
+import { useCart } from '../../hooks/useCart'
 
-export default function Navbar({ onOpenReservation }) {
+export default function Navbar({ onOpenReservation, onOpenCart, onNavigateHome }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)  // New state
   const [isSignInOpen, setIsSignInOpen] = useState(false)
+  const { itemCount } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,22 @@ export default function Navbar({ onOpenReservation }) {
   }, [])
 
   const closeMobile = () => setMobileMenuOpen(false)
+
+  const handleSectionNav = (e, href) => {
+    e.preventDefault()
+    closeMobile()
+    if (onNavigateHome) onNavigateHome()
+    setTimeout(() => {
+      const el = document.querySelector(href)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 60)
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    closeMobile()
+    if (onNavigateHome) onNavigateHome()
+  }
   const handleSignIn = () => {
     setIsSignInOpen(true)
     closeMobile()
@@ -42,7 +60,7 @@ export default function Navbar({ onOpenReservation }) {
       <header className={`navbar-minimal-header ${scrolled ? 'is-scrolled' : ''}`}>
         <nav className="navbar-minimal container" aria-label="Main Navigation">
           {/* Brand Logo */}
-          <a href="#" className="brand-minimal-logo" onClick={closeMobile}>
+          <a href="#hero" className="brand-minimal-logo" onClick={handleLogoClick}>
             <div className="logo-brand-text">
               <span className="brand-title-main">WERKA</span>
               <span className="brand-title-sub">BOLE • SUMMIT • LEBU</span>
@@ -51,15 +69,25 @@ export default function Navbar({ onOpenReservation }) {
 
           {/* Desktop Navigation Links */}
           <ul className="nav-minimal-links">
-            <li><a href="#hero" className="nav-item-link">Home</a></li>
-            <li><a href="#branches" className="nav-item-link">Where are we?</a></li>
-            <li><a href="#reviews" className="nav-item-link">Reviews</a></li>
-            <li><a href="#blog" className="nav-item-link">Blog</a></li>
-            <li><a href="#contact" className="nav-item-link">Contact</a></li>
+            <li><a href="#hero" className="nav-item-link" onClick={(e) => handleSectionNav(e, '#hero')}>Home</a></li>
+            <li><a href="#branches" className="nav-item-link" onClick={(e) => handleSectionNav(e, '#branches')}>Where are we?</a></li>
+            <li><a href="#reviews" className="nav-item-link" onClick={(e) => handleSectionNav(e, '#reviews')}>Reviews</a></li>
+            <li><a href="#blog" className="nav-item-link" onClick={(e) => handleSectionNav(e, '#blog')}>Blog</a></li>
+            <li><a href="#contact" className="nav-item-link" onClick={(e) => handleSectionNav(e, '#contact')}>Contact</a></li>
           </ul>
 
           {/* Minimalist CTA */}
           <div className="nav-actions-minimal">
+            <button
+              type="button"
+              className="nav-cart-btn"
+              onClick={() => { onOpenCart && onOpenCart(); closeMobile() }}
+              aria-label={`Open cart${itemCount > 0 ? `, ${itemCount} items` : ''}`}
+            >
+              <ShoppingCart size={19} />
+              {itemCount > 0 && <span className="nav-cart-badge">{itemCount}</span>}
+            </button>
+
             <button
               type="button"
               className="btn btn-primary btn-sm"
@@ -95,11 +123,11 @@ export default function Navbar({ onOpenReservation }) {
         {/* Mobile Drawer */}
         <div className={`mobile-drawer-minimal ${mobileMenuOpen ? 'open' : ''}`}>
           <ul className="mobile-drawer-links">
-            <li><a href="#hero" onClick={closeMobile}>Home</a></li>
-            <li><a href="#branches" onClick={closeMobile}>Where are we?</a></li>
-            <li><a href="#reviews" onClick={closeMobile}>Reviews</a></li>
-            <li><a href="#blog" onClick={closeMobile}>Blog</a></li>
-            <li><a href="#contact" onClick={closeMobile}>Contact</a></li>
+            <li><a href="#hero" onClick={(e) => handleSectionNav(e, '#hero')}>Home</a></li>
+            <li><a href="#branches" onClick={(e) => handleSectionNav(e, '#branches')}>Where are we?</a></li>
+            <li><a href="#reviews" onClick={(e) => handleSectionNav(e, '#reviews')}>Reviews</a></li>
+            <li><a href="#blog" onClick={(e) => handleSectionNav(e, '#blog')}>Blog</a></li>
+            <li><a href="#contact" onClick={(e) => handleSectionNav(e, '#contact')}>Contact</a></li>
           </ul>
           <div className="mobile-drawer-buttons">
             <button
